@@ -8,3 +8,11 @@
 //  "Ice: "
 // ]
 
+
+function packageDependencies(arr){
+    for(let i = 0; i < arr.length; i++){
+        arr[i]
+    }
+}
+
+module.exports = packageDependencies;
