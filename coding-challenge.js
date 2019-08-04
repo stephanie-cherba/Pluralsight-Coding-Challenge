@@ -33,40 +33,40 @@ function packageDependencies(arr){
 
     //loop through the array of dependencies. Add the packages with no dependencies to the output array first.
     while(outputArr.length < dependencyArr.length){
+        //loop through dependencyArr to find all packages with no dependencies first
         for(let i = 0; i < dependencyArr.length; i++){
             let currentPackage = packageArr[i]
             if (dependencyArr[i] === ''){
                 let containsPackage = false;
+                //loop through the outputArr to determing if currentPackage is already and element
                 for(let j = 0; j < outputArr.length; j++){
                     if(outputArr[j] == currentPackage){
                         containsPackage = true;
                     }
                 }
+                //if currentPackage is not already an element, then push package into array
                 if(containsPackage != true){
                 outputArr.push(currentPackage);
-
                 }
             }
         }
+        //loop through dependencyArr to determine what order in which to add what packages which have dependencies
         for(let k = 0; k < dependencyArr.length; k++){
-            let currentPackage = packageArr[k]
             if (dependencyArr[k] != ''){
-                for(let k = 0; k < packageArr.length; k++){
-                    if(dependencyArr[k] == packageArr[k]){
-                        outputArr.push(packageArr[k]);
-                    }
-                }
                 let containsPackage = false;
                 let containsDependency = false;
+                let currentPackage = packageArr[k]
+                //loop through outputArr to determine if currentPackage or the current dependency is already an element
                 for(let l = 0; l < outputArr.length; l++){
                     if(outputArr[l] == currentPackage){
                         containsPackage = true;
                     }
                     if(outputArr[l] == dependencyArr[k]){
                         containsDependency = true;
-                        outputArr.push(packageArr[k])
-                        console.log(outputArr)
                     }
+                }
+                if (containsPackage != true && containsDependency == true){
+                    outputArr.push(packageArr[k])
                 }
             }
         }

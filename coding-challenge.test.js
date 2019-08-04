@@ -1,7 +1,7 @@
 const packageDependencies = require('./packageDependencies');
 
 test('sorting packages', () => {
-    expect(packageDependencies(["KittenService: ", "Leetmeme: Cyberportal", "Cyberportal: Ice", "CamelCaser: KittenService", "Fraudstream: Leetmeme", "Ice: "])).toBe("KittenService, Ice, Cyberportal, Leetmeme, CamelCaser, Fraudstream");
+    expect(packageDependencies(["KittenService: ", "Leetmeme: Cyberportal", "Cyberportal: Ice", "CamelCaser: KittenService", "Fraudstream: Leetmeme", "Ice: "])).toBe("KittenService,Ice,Cyberportal,CamelCaser,Leetmeme, Fraudstream");
 })
 
 test('cycle dependencies', () => {
