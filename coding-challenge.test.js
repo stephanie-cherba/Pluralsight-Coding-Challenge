@@ -1,7 +1,7 @@
-const packageDependencies = require('./packageDependencies');
+const packageDependencies = require('./coding-challenge');
 
 test('sorting packages', () => {
-    expect(packageDependencies(["KittenService: ", "Leetmeme: Cyberportal", "Cyberportal: Ice", "CamelCaser: KittenService", "Fraudstream: Leetmeme", "Ice: "])).toBe("KittenService,Ice,Cyberportal,CamelCaser,Leetmeme, Fraudstream");
+    expect(packageDependencies(["KittenService: ", "Leetmeme: Cyberportal", "Cyberportal: Ice", "CamelCaser: KittenService", "Fraudstream: Leetmeme", "Ice: "])).toBe("KittenService,Ice,Cyberportal,CamelCaser,Leetmeme,Fraudstream");
 })
 
 test('cycle dependencies', () => {
@@ -15,4 +15,3 @@ test('packages missing colon', () => {
 test('two dependencies', () => {
     expect(packageDependencies(["KittenService:", "Leetmeme: Cyberportal", "Cyberportal: Ice, KittenService", "CamelCaser: KittenService", "Fraudstream: Leetmeme", "Ice: "])).toBe('Invalid - Each package must have at most one dependency')
 })
-d

@@ -65,12 +65,14 @@ function packageDependencies(arr){
                         containsDependency = true;
                     }
                 }
+                //if the package is not in the outputArr and the dependency is, the currentPackage into the outputArr
                 if (containsPackage != true && containsDependency == true){
-                    outputArr.push(packageArr[k])
+                    outputArr.push(currentPackage)
                 }
             }
         }
     }
+    //if there are elements in the outputArr, then turn it into a string before returning it, otherwise just return whatever outputString is
     if(outputArr.length > 0){
         outputString = outputArr.toString(",  ");
     }
