@@ -15,3 +15,4 @@ test('packages missing colon', () => {
 test('two dependencies', () => {
     expect(packageDependencies(["KittenService:", "Leetmeme: Cyberportal", "Cyberportal: Ice, KittenService", "CamelCaser: KittenService", "Fraudstream: Leetmeme", "Ice: "])).toBe('Invalid - Each package must have at most one dependency')
 })
+d
