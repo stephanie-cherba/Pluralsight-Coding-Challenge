@@ -22,7 +22,7 @@ function packageDependencies(arr){
         if (newArr.length > 2){
             outputString = 'Invalid - Each package must have at most one dependency'
         } else if (newArr[0].indexOf(':') != newArr[0].length -1){
-            outputString = 'Invalid - Each package must have a colon and space after, even if it has to dependencies to list'
+            outputString = 'Invalid - Each package must have a colon and space after, even if it has no dependencies to list'
         } else {
             let firstElement = newArr[0].replace(":", "");
             firstElement = firstElement.replace(" ", "");
