@@ -30,6 +30,37 @@ function packageDependencies(arr){
             dependencyArr.push(newArr[1]);
         }
     }
+    
+    //loop through packages and dependencies and add all dependencies for each package individually to a new array, dependencyList. If this becomes a cycle, outout dependency cycle error
+    let currentDependency; 
+    let dependencyList = [];
+
+    if(outputString == 'Valid'){
+        for(let i = 0; i < packageArr.length; i++){
+            currentDependency = dependencyArr[i];
+            dependencyList.push(currentDependency);
+
+            function addToDependencyList (currentDependency, dependencyList, dependencyArr, packageArr){
+                if(currentDependency != ''){
+                    if (dependencyList.indexOf(dependencyArr[packageArr.indexOf(currentDependency)]) == -1){
+
+                        dependencyList.push(dependencyArr[packageArr.indexOf(currentDependency)])
+                        currentDependency = dependencyArr[packageArr.indexOf(currentDependency)] != '' ? dependencyArr[packageArr.indexOf(currentDependency)]: null;
+
+                        if (currentDependency){
+                            addToDependencyList(currentDependency, dependencyList, dependencyArr, packageArr)
+                        }
+                    }else if (dependencyList.indexOf(dependencyArr[packageArr.indexOf(currentDependency)]) != -1){
+
+                        return outputString = "Invalid - Dependecies must not create a cycle or loop";
+                    }
+                }
+            }
+            addToDependencyList(currentDependency, dependencyList, dependencyArr, packageArr)
+            dependencyList.length = 0;
+        }
+    }
+    
 
     //loop through the array of dependencies. Add the packages with no dependencies to the output array first.
     while(outputString == 'Valid' && outputArr.length < dependencyArr.length){
@@ -65,6 +96,7 @@ function packageDependencies(arr){
                         containsDependency = true;
                     }
                 }
+
                 //if the package is not in the outputArr and the dependency is, the currentPackage into the outputArr
                 if (containsPackage != true && containsDependency == true){
                     outputArr.push(currentPackage)
@@ -73,10 +105,12 @@ function packageDependencies(arr){
         }
     }
     //if there are elements in the outputArr, then turn it into a string before returning it, otherwise just return whatever outputString is
-    if(outputArr.length > 0){
+    if(outputArr.length > 0 && outputString == 'Valid'){
         outputString = outputArr.toString(",  ");
     }
     return outputString;
 }
+
+console.log(packageDependencies(["KittenService: ", "Leetmeme: Cyberportal", "Cyberportal: Ice", "CamelCaser: KittenService", "Fraudstream: Leetmeme", "Ice: "]))
 
 module.exports = packageDependencies;

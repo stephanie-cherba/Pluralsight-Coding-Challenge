@@ -10,6 +10,9 @@ describe('sorting packages', () => {
     it('should output multiple dependencies error', () => {
         expect(packageDependencies(["KittenService:", "Leetmeme: Cyberportal", "Cyberportal: Ice, KittenService", "CamelCaser: KittenService", "Fraudstream: Leetmeme", "Ice: "])).toBe('Invalid - Each package must have at most one dependency')
     });
+    it('should output dependency error', () => {
+        expect(packageDependencies(["KittenService: ", "Leetmeme: Cyberportal", "Cyberportal: Ice", "CamelCaser: KittenService", "Fraudstream: ", "Ice: Leetmeme"])).toBe("Invalid - Dependecies must not create a cycle or loop");
+    });
 });
 
 
