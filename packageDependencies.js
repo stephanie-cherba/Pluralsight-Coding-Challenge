@@ -32,7 +32,7 @@ function packageDependencies(arr){
     }
 
     //loop through the array of dependencies. Add the packages with no dependencies to the output array first.
-    while(outputArr.length < dependencyArr.length){
+    while(outputString == 'Valid' && outputArr.length < dependencyArr.length){
         //loop through dependencyArr to find all packages with no dependencies first
         for(let i = 0; i < dependencyArr.length; i++){
             let currentPackage = packageArr[i]
